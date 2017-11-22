@@ -1,0 +1,18 @@
+{
+  "name": "socket-chat-example",
+  "version": "0.0.1",
+  "description": "my first socket.io app",
+  "dependencies": {
+    "chokidar": "^1.5.2",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "net-ping": "^1.2.0",
+    "project-oxford": "^1.4.0",
+    "request": "^2.72.0",
+    "rsvp": "^3.2.1",
+    "socket.io": "^1.4.5",
+    "body-parser": "latest",
+    "nodemailer": "latest",
+    "promise": "latest"
+  }
+}

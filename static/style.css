@@ -1,0 +1,333 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	background: #111;
+}
+
+#container {
+	margin: 66px auto auto 15px;
+/*	padding-left: 5%;	
+	top: 50%;
+	transform: translateY(-50%);
+	position: absolute;
+	width: 100%;*/
+}
+
+.smallWidget, .mediumWidget {
+	background: #222;
+	border: 1px solid #333;
+	width: 19%;
+	height: 400px;
+	color: white;
+	text-align: center;
+	display: inline-block;
+	position: relative;
+	margin-right:10px;
+	margin-top: 12px;
+	vertical-align: top;
+	overflow: hidden;
+}
+
+.mediumWidget {
+	width: 38.9%;
+}
+
+h1 {
+	font-size: 40px;
+	margin: 15px auto;
+}
+
+h2 {
+	font-size: 60px;
+	margin: 10px auto;
+}
+
+h3 {
+	font-size: 30px;
+}
+
+.graph {
+	width:90%;
+	left: 5%;
+	height:180px;
+	position:absolute;
+	bottom: 0;
+}
+
+canvas {
+	width: 100%;
+	height: 100%;
+	position:absolute;
+	left: 0;
+}
+
+.highLow>div {
+	display: inline-block;	
+	margin: auto 20px;
+	font-size: 24px;
+	
+}
+
+#upWidget, #upSwitchWidget {
+	font-size: 30px;
+	text-align:left;	
+}
+
+#upWidget h1, #upSwitchWidget h1 {
+	text-align: center;	
+}
+
+#upWidget .upType {
+	/*display: flex;
+	justify-content: center;
+	align-items: center;*/
+	margin: 5px auto;
+	width: 90%;
+	left: 5%;	
+}
+
+#upWidget .upType .text {
+	vertical-align: top;
+	display: inline-block;
+	margin-left: 20px;
+	/*text-transform: capitalize;*/
+}
+
+#upSwitchWidget .upType {
+	vertical-align: top;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+#switchContent .text {
+	color: red;
+	font-size: 29px;
+}
+
+.upArrows {
+	margin-left: 10px;
+	width: 34px;
+	height: 40px;
+	background: url("images/upDownArrowsSm.png") 0 no-repeat;
+	background-size: cover;
+	display: inline-block;
+}
+
+.down {
+    background-position: -31px;
+}
+
+.downFor {
+	width: 100%;
+	margin-top: -5px;
+	margin-left: 70px;
+	font-size: 18px;	
+}
+
+#upSwitchWidget .downFor {
+	margin-left: 0;
+}
+
+#switchHolder, #printersHolder{
+    overflow: hidden;
+    height: 300px;
+}
+
+#unasignedTitle {
+	margin-top: 10px;
+	display: none;	
+}
+
+#unasigned {
+	font-size: 25px;
+	margin-top: 5px;	
+}
+
+#unasignedSummary, #unasignedName, #unasignedDate {
+	display: inline-block;
+	width: 33%;
+	text-align: left;
+	vertical-align:top;
+}
+
+#unasignedSummary {
+	width: 51%;	
+}
+
+#unasignedSummary p, #unasignedName p{
+	white-space: nowrap;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+}
+
+#unasignedDate {
+	width: 10%;	
+	text-align: right;
+}
+
+#serverRoomWidget {
+	min-height: 85px;
+	height: 85px;	
+}
+
+#serverRoomLight {
+	width: 65px;
+	height: 65px;
+	background: url("images/bulbOff.png") 0 no-repeat;
+	background-size: cover;
+	position: absolute;
+	right: 10px;
+	top: 10px;	
+}
+
+#leakDetected {
+	width: 60%;
+	height: 60%;
+	background-color: red;
+	border: 5px solid #5F1E1F;
+	border-radius: 10px;
+	font-size: 120px;
+	color: white;
+	text-shadow: 2px 2px 5px rgba(0,0,0,0.65);
+	text-align:center;
+	z-index: 500;
+	position:absolute;
+	left: 50%;
+	top: 50%;
+	transform:translateX(-50%) translateY(-50%);
+	display: none;
+}
+
+#leakDetected div {
+	position:absolute;
+	left: 50%;
+	top: 50%;
+	transform:translateX(-50%) translateY(-50%);
+}
+
+#cover {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.75);
+	display: none;
+}
+
+#weatherIcon {
+	width: 80%;
+	height: 160px;
+	margin-left: 10%;
+}
+
+#weatherWidget .text {
+	font-size: 30px;
+	position: absolute;
+    bottom: 10px;
+	width: 100%;
+}
+
+#wootImage {
+	width: 90%;
+	margin-left: 5%;
+	height: 180px;
+	background: center no-repeat;
+	background-size: contain;
+}
+
+#wootWidget h2{
+	font-size: 26px;
+}
+
+#wootWidget .text {
+	font-size: 30px;
+	position: absolute;
+    bottom: 10px;
+	width: 100%;
+}
+
+#whosHere {
+	display:none;
+	width: 1280px;
+	height: 800px;
+	left: 50%;
+	top: 50%;
+	transform:translateX(-50%) translateY(-50%);
+	z-index: 499;
+	position: fixed;
+	background: transparent no-repeat center;
+	background-size: contain;
+}
+
+.face {
+	border: 2px solid yellow;
+	position:absolute;
+	text-transform: capitalize;
+	font-size: 28px;
+}
+
+.face .faceInfo {
+	min-width: 210px;
+	border-radius: 8px;
+	padding: 3px;
+	background-color: rgba(136,136,136,0.8);
+	color: white;
+	text-shadow:1px 1px 2px rgba(0,0,0,0.75);
+}
+
+.faceAge, #description {
+	position: absolute;
+	min-width: 210px;
+	text-transform: capitalize;
+	display: inline-block;
+	font-size: 28px;
+	border-radius: 8px;
+	padding: 3px;
+	background-color: rgba(136,136,136,0.8);
+	color: white;
+	text-shadow:1px 1px 2px rgba(0,0,0,0.75);
+}
+
+#description {
+	background-color: rgba(136,136,136,1);
+	padding: 3px 10px ;
+	left: 50%;
+	bottom: -60px;
+	transform:translateX(-50%);
+}
+
+.emoji {
+	text-align: center;
+}
+
+.emoji img {
+	width: 50px;
+}
+
+.printer {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.printer span {
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+.inks {
+    font-size: 18px;
+}
+
+.inks div {
+    margin-left: 20px;
+}
+
+#printersContent {
+    text-align: left;
+    margin-left: 20px;
+}

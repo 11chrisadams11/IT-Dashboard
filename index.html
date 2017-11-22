@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Dashboard</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+	<div id="container">
+    	<div id="serverRoomWidget" class="mediumWidget">
+			<h1>Server Room</h1>
+            <div id="serverRoomLight"></div>
+		</div>
+    	<p></p>
+		<div id="tempWidget" class="smallWidget">
+			<h1>Temperature</h1>
+			<h2><span id="temp">0</span>°</h2>
+            <div class="highLow">
+            	<div id="tempHigh">High: <span>75</span>°</div>
+                <div id="tempLow">Low: <span>69</span>°</div>
+            </div>
+			<div class="graph"><canvas id="tempChart"></canvas></div>
+		</div>
+		
+		<div id="humWidget" class="smallWidget">
+			<h1>Humidity</h1>
+			<h2><span id="hum">0</span>%</h2>
+            <div class="highLow">
+            	<div id="humHigh">High: <span>75</span>%</div>
+                <div id="humLow">Low: <span>69</span>%</div>
+            </div>
+			<div  class="graph"><canvas id="humChart"></canvas></div>
+		</div>
+        
+        <div id="upWidget" class="smallWidget">
+			<h1>Connectivity</h1>
+			<div id="upInternet" class="upType">
+                <div id="internetArrow" class="upArrows"></div>
+                <div class="text">Internet</div>
+                <div class="downFor"></div>
+            </div>
+			<div id="upPhones" class="upType">
+                <div id="phonesArrow" class="upArrows"></div>
+                <div class="text">Phones</div>
+                <div class="downFor"></div>
+            </div>
+            <div id="upSpillman" class="upType">
+                <div id="spillmanArrow" class="upArrows"></div>
+                <div class="text">Spillman</div>
+                <div class="downFor"></div>
+            </div>
+		</div>
+        
+        <div id="upSwitchWidget" class="smallWidget">
+			<h1>Switches</h1>
+            <div id="switchHolder">
+                <div id="switchContent"></div>
+            </div>
+		</div>
+
+        <div id="printersWidget" class="smallWidget">
+			<h1>Printers</h1>
+            <div id="printersHolder">
+                <div id="printersContent"></div>
+            </div>
+		</div>
+
+        <p></p>
+        <div id="ticketsWidget" class="mediumWidget">
+			<h1>Tickets</h1>
+			<h3><span id="ticketCount">0</span> open tickets.</h3>
+            <h3 id="unasignedTitle">Unassigned:</h3>
+            <div id="unasigned">
+            	<div id="unasignedSummary"></div>
+                <div id="unasignedName"></div>
+                <div id="unasignedDate"></div>
+            </div>
+		</div>
+        
+        <div id="weatherWidget" class="smallWidget">
+            <h1>Weather</h1>
+            <h2><span id='weatherTemp'></span>°</h2>
+            <div><canvas id='weatherIcon'></canvas></div>
+            <div class="text" id='weatherWeather'>Rainy </div>
+        </div>
+        
+        <div id="wootWidget" class="smallWidget">
+            <h1>Woot!</h1>
+            <h2 id='wootTitle'></h2>
+            <div id='wootImage'></div>
+            <div class="text" id='wootPrice'></div>
+        </div>
+	</div>
+    
+    
+    <div id="cover"></div>
+    <div id="leakDetected">
+    	<div>Leak Detected in Server Room!!!</div>
+    </div>
+    <div id="whosHere"></div>
+	
+    <script src="/socket.io/socket.io.js"></script>
+	<!--<script src="http://code.jquery.com/jquery-1.11.1.js"></script>-->
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="jquery-ui.min.js"></script>
+	<script src="moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <script src="skycons.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
