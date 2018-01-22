@@ -280,7 +280,7 @@ $(function(){
 		$('div#wootWidget h1').html(data[3]);
 	})
 	.on('whosHere', function(data){
-		console.log(data)
+		// console.log(data)
 		var $whosHere = $('div#whosHere');
 		$whosHere.html('');
 		$whosHere.css({'background-image': 'url("' + data.image + '")'});
@@ -365,6 +365,12 @@ $(function(){
             }
         }
 
+	})
+	.on('news', function(data){
+		console.log('hello')
+		console.log(data);
+		$('#newsTitle').html(data[0]);
+		$('#newsBody').html(data[1]);
 	});
 	
 	function pingDo(data, pointers, who){
@@ -372,7 +378,9 @@ $(function(){
 		for(var i = 0; i < data.length; i++){
             var $pointers = $("#" + pointers[i]);
 			if(data[i] === "Down"){
-				$pointers.css({"background-position": -31});
+				//To change image change below to: $pointers.css({"background-image": down_image_name});
+				// $pointers.css({"background-position": -31});
+				$pointers.css({"background-image": "url('images/flame.gif')"});
 				
 				var warnCount = ($pointers.parent().find('.downFor').html() === "") ? "" : $pointers.parent().find('.downFor').html().split(' ')[2];
 				if(warnCount !== ''){
@@ -386,7 +394,9 @@ $(function(){
 					audioError.play();
 				}
 			} else {
-				$pointers.css({"background-position": 0}).parent().find('.downFor').html('');
+				//To change image change below to: $pointers.css({"background-image": up_image_name}).parent().find('.downFor').html('');
+				// $pointers.css({"background-position": 0}).parent().find('.downFor').html('');
+				$pointers.css({"background-image": "url('images/newnyancat.gif ')"}).parent().find('.downFor').html('');
 			}
 		}
 			

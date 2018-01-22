@@ -15,6 +15,7 @@ var request = require('request');
 var fs = require("fs");
 var Promise = require('promise');
 var nodemailer = require('nodemailer');
+var parser = require('rssparser');
 var cl = console.log;
 
 var transporter = nodemailer.createTransport({
@@ -288,7 +289,7 @@ function getWoot(site){
 }
 
 function getMeh() {
-    var url = 'https://api.meh.com/1/current.json?apikey=j8HBHncxDdQTXTPrHZLrwPJaK8PEEFpq'
+    var url = 'https://api.meh.com/1/current.json?apikey=j8HBHncxDdQTXTPrHZLrwPJaK8PEEFpq';
     var options = {
         url: 'https://api.meh.com/1/current.json?apikey=j8HBHncxDdQTXTPrHZLrwPJaK8PEEFpq',
         method: 'GET'
@@ -324,6 +325,22 @@ function getMeh() {
         }
     });
 }
+
+var newsCount = 0;
+function getNews(){
+    var options = {};
+    parser.parseURL('https://threatpost.com/feed/', options, function(err, out){
+        var title = out.items[newsCount].title;
+        var body = out.items[newsCount].summary;
+        io.emit('news', [title, body]);
+        // console.log(title, body);
+        newsCount = ++newsCount > 5 ? 0 : newsCount++
+    });
+}
+
+setTimeout(getNews, 3000);
+setInterval(getNews, 1000 * 60 * 5);
+
 
 watcher.on('add', function(event) {
     exec("/usr/local/bin/facedetect " + event, function(error, stdout, stderr){

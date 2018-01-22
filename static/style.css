@@ -110,9 +110,9 @@ canvas {
 
 .upArrows {
 	margin-left: 10px;
-	width: 34px;
-	height: 40px;
-	background: url("images/upDownArrowsSm.png") 0 no-repeat;
+	width: 125px;
+	height: 50px;
+	background: url("images/newnyancat.gif") 0 no-repeat;
 	background-size: cover;
 	display: inline-block;
 }
@@ -330,4 +330,9 @@ canvas {
 #printersContent {
     text-align: left;
     margin-left: 20px;
+}
+
+#newsBody {
+	font-size: 20px;
+	margin: 20px 5px 5px 5px;
 }
