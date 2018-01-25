@@ -11,11 +11,34 @@
     <div id="search">
         <input type="text" id="searchInput">
         <div id="searchButton"><span>Search</span></div>
+        <div id="addButton"></div>
     </div>
     <div id="results">
 
     </div>
 </div>
+
+<div id="addIPPopup">
+    <div id="addIPTitle">Add IP Address to Search and Pings</div>
+    <div id="addIPTitle2">(Leave the name empty if you don't want to add to that list)</div>
+    <input type="text" id="addIPSearchName" placeholder="Name for Search">
+    <input type="text" id="addIPPingName" placeholder="Name for Pings">
+    <input type="text" id="addIPIP" placeholder="IP Address">
+    <p></p>
+    <div id="addIPAddButton" class="button">Add</div>
+    <div id="addIPCancelButton" class="button">Cancel</div>
+</div>
+
+<div id="removeIPPopup">
+    <div id="removeIPTitle">Are you sure you want yo remove the following IP?</div>
+    <div id="removeIPName"></div>
+    <div id="removeIPIP"></div>
+    <p></p>
+    <div id="removeIPYesButton" class="button">Yes</div>
+    <div id="removeIPNoButton" class="button">No</div>
+</div>
+
+<div id="dimmer"></div>
 
 <!--<script src="/socket.io/socket.io.js"></script>-->
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>

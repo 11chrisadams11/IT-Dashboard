@@ -141,6 +141,41 @@ app.get('/', function(req, res){
         o.emit('printers', false);
     }
 	res.send('OK');
+})
+.post('/addip', function(req, res){
+    //console.log(req.body);
+    var r = req.body;
+    var found = false;
+    for(var i in ips){
+        if(ips[i] === r.ip){
+            found = true
+        }
+    }
+
+    r.searchName = (r.searchName === '') ? r.pingName : r.searchName;
+    cl(r)
+    if(!found){
+        var promiseArr = [addSearchIP(r.searchName, r.ip), addPingIP(r.pingName, r.ip)];
+        Promise.all(promiseArr).then(function(results){
+            if(results[0] && results[1]){
+                res.send(true);
+            } else {
+                res.send(false);
+            }
+        })
+    }
+})
+.post('/removeip', function(req, res){
+    //console.log(req.body);
+    var r = req.body;
+    var promiseArr = [removeSearchIP(r.ip), removePingIP(r.ip)];
+    Promise.all(promiseArr).then(function(results){
+        if(results[0] && results[1]){
+            res.send(true);
+        } else {
+            res.send(false);
+        }
+    })
 });
 
 io.on('connection', function(socket){
@@ -486,9 +521,102 @@ function sendEmail(subject, what){
 
 var ips = {};
 
-fs.readFile("static/ip.txt", function(err, data){
-    ips = JSON.parse(data);
-});
+function readIPFile(){
+    fs.readFile("static/ip.txt", function(err, data){
+        ips = JSON.parse(data);
+    });
+}
+
+readIPFile();
+
+function addSearchIP(newName, newIP){
+    return new Promise(function (resolve, reject) {
+        if(newName !== ''){
+            exec('cp /home/ittv/dashboard/static/ip.txt /home/ittv/dashboard/static/ip.txt.bac');
+            ips[newName] = newIP;
+            fs.writeFile("static/ip.txt", JSON.stringify(ips), function (err) {
+                if (err) {
+                    reject(console.log("Add to search IPs:", err));
+                } else {
+                    cl("ip.txt updated");
+                    resolve(true)
+                }
+
+            })
+        } else {
+            resolve(true)
+        }
+    })
+}
+
+function addPingIP(newName, newIP){
+    return new Promise(function (resolve, reject) {
+        if(newName !== ''){
+            exec('cp /home/ittv/pingIP.txt /home/ittv/pingIP.txt.bac');
+            fs.readFile("/home/ittv/pingIP.txt", function (err, data) {
+                var pingip = JSON.parse(data);
+                pingip[newName] = newIP;
+                fs.writeFile("/home/ittv/pingIP.txt", JSON.stringify(pingip), function (err) {
+                    if (err) {
+                        reject(console.log("Add to ping IPs:", err));
+                    } else {
+                        cl("pingIP.txt updated");
+                        exec("sudo systemctl restart pingService --no-block");
+                        resolve(true)
+                    }
+
+                })
+            });
+        } else {
+            resolve(true)
+        }
+    })
+}
+
+function removeSearchIP(ip) {
+    return new Promise(function (resolve, reject) {
+        exec('cp /home/ittv/dashboard/static/ip.txt /home/ittv/dashboard/static/ip.txt.bac');
+        for (var i in ips) {
+            if (ips[i] === ip) {
+                delete ips[i]
+            }
+        }
+
+        fs.writeFile("static/ip.txt", JSON.stringify(ips), function (err) {
+            if (err) {
+                reject('ip.txt Error: ' + err)
+            } else {
+                cl("ip.txt updated");
+                resolve(true)
+            }
+        });
+    })
+}
+
+function removePingIP(ip){
+    return new Promise(function (resolve, reject) {
+        exec('cp /home/ittv/pingIP.txt /home/ittv/pingIP.txt.bac');
+        fs.readFile("/home/ittv/pingIP.txt", function (err, data) {
+            var pingip = JSON.parse(data);
+            for (var p in pingip) {
+                if (pingip.hasOwnProperty(p)) {
+                    if (pingip[p] === ip) {
+                        delete pingip[p]
+                    }
+                }
+            }
+            fs.writeFile("/home/ittv/pingIP.txt", JSON.stringify(pingip), function (err) {
+                if (err) {
+                    reject('pingIP.txt Error: ' + err)
+                } else {
+                    cl("pingIP.txt updated");
+                    exec("sudo systemctl restart pingService --no-block");
+                    resolve(true);
+                }
+            })
+        });
+    })
+}
 
 function comparator(a, b) {
     if (a[0].toLowerCase() < b[0].toLowerCase()) return -1;
